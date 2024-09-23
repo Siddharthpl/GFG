@@ -5,34 +5,30 @@ using namespace std;
 
 // } Driver Code Ends
 class Solution {
-  public: 
+  public:
     // Function to return the minimum cost of connecting the ropes.
     long long minCost(vector<long long>& arr) {
-        priority_queue<long long,vector<long long>,greater<long long>> pq;
+        priority_queue<int,vector<int>,greater<int>> minHeap;
+        
         for(int i=0;i<arr.size();i++){
-            pq.push(arr[i]);
-        }
-        long long cost=0;
-        
-        while(pq.size()!=1){
-            long long first = pq.top();
-            pq.pop();
-            
-            long long second = pq.top();
-            pq.pop();
-            
-            long long sum = 0;
-            sum = first+second;
-            pq.push(sum);
-            cost = cost+sum;
-            
-            
+            int val = arr[i];
+            minHeap.push(val);
         }
         
+        long long cost = 0;
         
+        while(minHeap.size()>1){
+            int a = minHeap.top();
+            minHeap.pop();
+            int b = minHeap.top();
+            minHeap.pop();
+            
+            cost += a+b;
+            long long sum = a+b;
+            minHeap.push(sum);
+        }
         return cost;
     }
-    
 };
 
 
